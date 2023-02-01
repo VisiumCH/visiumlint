@@ -4,21 +4,12 @@
 
 ## Installation
 
+`pipenv install git+ssh://git@github.com/VisiumCH/visium-lint.git@master#egg=visiumlint`
 ## Example usage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- Create a pipenv environment
+- Install vlint using the above command.
+- Activate the environment using `pipenv shell`
+- Run the visium package by running the command `vlint`
 
 
 # Development
