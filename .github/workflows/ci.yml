@@ -2,16 +2,17 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [ master ]
   pull_request:
-    branches: [main]
+    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  chek_python_style:
+    name: Check Python style
+    runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v3
-          - uses: VisiumCH/check-python-style@main
-            with:
-              python-version: "3.10.8"
+      - uses: VisiumCH/check-python-style@main
+        with:
+          python-version: '3.9'
