@@ -1,16 +1,14 @@
-import typer
-
+"""visiumlint main module."""
 from subprocess import call
 
 
-def lint(folders: list[str] = typer.Option("", help="Last name of person to greet.")):
+def lint() -> None:
+    """Implement the logic of the lint command."""
     call(["sh", "-c", "echo 'Running black'"])
     call(["sh", "-c", "black --check . --line-length 120"])
-    # call([ 'sh','-c', 'black --check .'])
 
     call(["sh", "-c", "echo Running isort"])
     call(["sh", "-c", "isort --check --gitignore . --line-length 120 --profile black"])
-    # call([ 'sh','-c', 'isort --check --gitignore .'])
 
     call(["sh", "-c", "echo Running pylint"])
     call(

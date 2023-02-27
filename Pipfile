@@ -27,14 +27,15 @@ bottleneck = "*"
 typer = "*"
 setuptools = "*"
 build = "*"
-
-[dev-packages]
 black = "*"
 isort = "*"
 pre-commit = "*"
 pydocstyle = "*"
 pylint = "*"
 mypy = "*"
+visiumlint = {path = "."}
+
+[dev-packages]
 
 [requires]
 python_version = "3.10"
