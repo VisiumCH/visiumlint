@@ -22,7 +22,8 @@ def lint(folders: list[str] = typer.Option("", help="Last name of person to gree
             "^[a-z][a-z0-9_]*$",
             "--argument-rgx",
             "^[a-z][a-z0-9_]*$",
-            "--max-line-length", "120"
+            "--max-line-length",
+            "120",
         ]
     )
 
