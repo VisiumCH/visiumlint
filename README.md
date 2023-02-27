@@ -1,4 +1,4 @@
-# vlint - Visum linting package
+# visiumlint - Visum linting package
 
 ## Description
 
