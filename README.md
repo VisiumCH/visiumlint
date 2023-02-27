@@ -10,7 +10,7 @@
 - Create a pipenv environment
 - Install visiumlint using the above command.
 - Activate the environment using `pipenv shell`
-- Run the visium package by running the command `vlint`
+- Run the visium package by running the command `visiumlint`
 
 
 # Development
