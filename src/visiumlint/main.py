@@ -1,17 +1,20 @@
 """visiumlint main module."""
-from subprocess import call
+import sys
+from subprocess import run
 
 
 def lint() -> None:
     """Implement the logic of the lint command."""
-    call(["sh", "-c", "echo 'Running black'"])
-    call(["sh", "-c", "black --check . --line-length 120"])
+    run(["sh", "-c", "echo 'Running black'"], check=False)
+    black_returncode = run(["sh", "-c", "black --check . --line-length 120"], check=False).returncode
 
-    call(["sh", "-c", "echo Running isort"])
-    call(["sh", "-c", "isort --check --gitignore . --line-length 120 --profile black"])
+    run(["sh", "-c", "echo Running isort"], check=False)
+    isort_returncode = run(
+        ["sh", "-c", "isort --check --gitignore . --line-length 120 --profile black"], check=False
+    ).returncode
 
-    call(["sh", "-c", "echo Running pylint"])
-    call(
+    run(["sh", "-c", "echo Running pylint"], check=False)
+    pylint_returncode = run(
         [
             "sh",
             "-c",
@@ -22,17 +25,34 @@ def lint() -> None:
             "^[a-z][a-z0-9_]*$",
             "--max-line-length",
             "120",
-        ]
-    )
+        ],
+        check=False,
+    ).returncode
 
-    call(["sh", "-c", "echo Running pydocstyle"])
-    call(["sh", "-c", "pydocstyle .", "--add-ignore", "D107, D104, D103", "--convention", "google"])
+    run(["sh", "-c", "echo Running pydocstyle"], check=False)
+    pydocstyle_returncode = run(
+        ["sh", "-c", "pydocstyle .", "--add-ignore", "D107, D104, D103", "--convention", "google"], check=False
+    ).returncode
 
-    call(["sh", "-c", "echo Running mypy"])
-    call(
+    run(["sh", "-c", "echo Running mypy"], check=False)
+    mypy_returncode = run(
         [
             "sh",
             "-c",
             '! mypy . --disallow-untyped-defs --disallow-incomplete-defs | grep "Function is missing" || false',
-        ]
-    )
+        ],
+        check=False,
+    ).returncode
+
+    if (
+        black_returncode != 0
+        or isort_returncode != 0
+        or pylint_returncode != 0
+        or pydocstyle_returncode != 0
+        or mypy_returncode != 0
+    ):
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    lint()
