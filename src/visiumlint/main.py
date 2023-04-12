@@ -26,7 +26,6 @@ def lint() -> None:
             "--max-line-length",
             "120",
         ],
-        check=False,
     ).returncode
 
     run(["sh", "-c", "echo Running pydocstyle"], check=False)
@@ -52,7 +51,3 @@ def lint() -> None:
         or mypy_returncode != 0
     ):
         sys.exit(1)
-
-
-if __name__ == "__main__":
-    lint()
