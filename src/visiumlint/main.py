@@ -1,4 +1,5 @@
 """visiumlint main module."""
+# pylint: disable=duplicate-code
 import sys
 from subprocess import run
 
@@ -26,6 +27,7 @@ def lint() -> None:
             "--max-line-length",
             "120",
         ],
+        check=False,
     ).returncode
 
     run(["sh", "-c", "echo Running pydocstyle"], check=False)
