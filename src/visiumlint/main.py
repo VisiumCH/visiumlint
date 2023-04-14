@@ -3,15 +3,24 @@
 import sys
 from subprocess import run
 
+import click
 
-def lint() -> None:
+
+@click.command()
+@click.option("--fix", is_flag=True, default=False, help="Enable fix mode.")
+def lint(fix: bool) -> None:
     """Implement the logic of the lint command."""
+    if fix:
+        check = ""
+    else:
+        check = "--check"
+
     run(["sh", "-c", "echo 'Running black'"], check=False)
-    black_returncode = run(["sh", "-c", "black --check . --line-length 120"], check=False).returncode
+    black_returncode = run(["sh", "-c", f"black {check} . --line-length 120"], check=False).returncode
 
     run(["sh", "-c", "echo Running isort"], check=False)
     isort_returncode = run(
-        ["sh", "-c", "isort --check --gitignore . --line-length 120 --profile black"], check=False
+        ["sh", "-c", f"isort {check} --gitignore . --line-length 120 --profile black"], check=False
     ).returncode
 
     run(["sh", "-c", "echo Running pylint"], check=False)
