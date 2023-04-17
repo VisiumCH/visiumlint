@@ -34,7 +34,6 @@ pydocstyle = "*"
 pylint = "*"
 mypy = "*"
 visiumlint = {path = "."}
-click = "*"
 
 [dev-packages]
 

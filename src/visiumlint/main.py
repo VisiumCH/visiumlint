@@ -6,7 +6,7 @@ from subprocess import run
 import typer
 
 
-def lint(fix: bool = typer.Option(False, "--fix")) -> None:
+def lint(fix: bool = typer.Option(False, "--fix", help="Enable fix mode.")) -> None:
     """Implement the logic of the lint command."""
     if fix:
         check = ""
@@ -62,5 +62,6 @@ def lint(fix: bool = typer.Option(False, "--fix")) -> None:
         sys.exit(1)
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Typer entrypoint."""
     typer.run(lint)
