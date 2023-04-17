@@ -3,12 +3,10 @@
 import sys
 from subprocess import run
 
-import click
+import typer
 
 
-@click.command()
-@click.option("--fix", is_flag=True, default=False, help="Enable fix mode.")
-def lint(fix: bool) -> None:
+def lint(fix: bool = typer.Option(False, "--fix")) -> None:
     """Implement the logic of the lint command."""
     if fix:
         check = ""
@@ -62,3 +60,7 @@ def lint(fix: bool) -> None:
         or mypy_returncode != 0
     ):
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    typer.run(lint)
