@@ -1,12 +1,16 @@
 # visiumlint - Visum linting package
+![CI](https://github.com/VisiumCH/visium-lint/actions/workflows/ci.yml/badge.svg)
+[![PyPI version](https://badge.fury.io/py/visiumlint.svg)](https://badge.fury.io/py/visiumlint)
 
-## Description
+All of your favorite linters and formatters gathered in a single command.
 
-## Installation
+Visiumlint relies on `black`, `isort`, `pylint`, `pydocstyle` and `mypy`.
 
-`pipenv install git+ssh://git@github.com/VisiumCH/visium-lint.git@master#egg=visiumlint`
+# Installation
 
-## Example usage
+`pipenv install visiumlint`
+
+# Example usage
 - Create a pipenv environment
 - Install visiumlint using the above command.
 - Activate the environment using `pipenv shell`
@@ -19,7 +23,7 @@
 ### Set up the environment
 The python environment is managed with `pipenv`. You can set up your environment with the following steps:
 
-- Run `pipenv lock`to generate the `Pipfile.lock` which lists the version of your python packages.
+- Run `pipenv lock` to generate the `Pipfile.lock` which lists the version of your python packages.
 - Run `pipenv install --dev` to actually create a virtual environment and install the python packages. The flag `--dev` allows to install the development packages (for linting, ...).
 
 
