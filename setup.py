@@ -23,7 +23,7 @@ setuptools.setup(
     ],
     entry_points={
         "console_scripts": [
-            "visiumlint = visiumlint.main:lint",
+            "visiumlint = src.visiumlint.main:lint",
         ],
     },
 )
