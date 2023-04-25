@@ -30,6 +30,7 @@ pylint = "*"
 mypy = "*"
 visiumlint = {path = "."}
 bump = "*"
+bumpversion = "*"
 
 [dev-packages]
 setuptools = "*"

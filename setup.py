@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="visiumlint",
-    version="0.0.2",
+    version="0.0.1",
     author="Visium SA",
     description="Visium linting tool",
     long_description=long_description,
