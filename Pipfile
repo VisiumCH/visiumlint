@@ -19,11 +19,6 @@ lint = """sh -c "
 """
 
 [packages]
-dvc = "*"
-jupyterlab = "*"
-pandas = "*"
-numexpr = "*"
-bottleneck = "*"
 typer = "*"
 setuptools = "*"
 build = "*"
@@ -34,6 +29,7 @@ pydocstyle = "*"
 pylint = "*"
 mypy = "*"
 visiumlint = {path = "."}
+bump = "*"
 
 [dev-packages]
 setuptools = "*"
