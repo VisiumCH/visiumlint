@@ -3,15 +3,22 @@
 import sys
 from subprocess import run
 
+import typer
 
-def lint() -> None:
+
+def lint(fix: bool = typer.Option(False, "--fix", help="Enable fix mode.")) -> None:
     """Implement the logic of the lint command."""
+    if fix:
+        check = ""
+    else:
+        check = "--check"
+
     run(["sh", "-c", "echo 'Running black'"], check=False)
-    black_returncode = run(["sh", "-c", "black --check . --line-length 120"], check=False).returncode
+    black_returncode = run(["sh", "-c", f"black {check} . --line-length 120"], check=False).returncode
 
     run(["sh", "-c", "echo Running isort"], check=False)
     isort_returncode = run(
-        ["sh", "-c", "isort --check --gitignore . --line-length 120 --profile black"], check=False
+        ["sh", "-c", f"isort {check} --gitignore . --line-length 120 --profile black"], check=False
     ).returncode
 
     run(["sh", "-c", "echo Running pylint"], check=False)
@@ -53,3 +60,8 @@ def lint() -> None:
         or mypy_returncode != 0
     ):
         sys.exit(1)
+
+
+def main() -> None:
+    """Typer entrypoint."""
+    typer.run(lint)
