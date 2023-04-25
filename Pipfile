@@ -29,13 +29,12 @@ pydocstyle = "*"
 pylint = "*"
 mypy = "*"
 visiumlint = {path = "."}
-bump = "*"
-bumpversion = "*"
 
 [dev-packages]
 setuptools = "*"
 wheel = "*"
 twine = "*"
+bumpversion = "*"
 
 [requires]
 python_version = "3.10"
