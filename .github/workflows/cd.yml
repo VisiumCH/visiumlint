@@ -24,7 +24,7 @@ jobs:
           pipenv install --dev
       - name: Bump version
         run: |
-          bumpversion patch
+          pipenv run bumpversion patch
       - name: Build and publish
         env:
           TWINE_USERNAME: __token__
