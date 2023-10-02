@@ -5,11 +5,17 @@ on:
   push:
     branches: [ feature/continuous-delivery ]
   workflow_dispatch:
+    branches:
+      - feature/continuous-delivery
     inputs:
       major_update:
         description: 'Major update'
         required: true
         default: false
+        type: choice
+        options:
+          - true
+          - false
 
 jobs:
   publish-to-pypi:
