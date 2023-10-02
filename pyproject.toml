@@ -10,6 +10,8 @@ build-backend = "setuptools.build_meta"
 [project.scripts]
 explore = "visiumlint.main:main"
 
+[tool.setuptools_scm]
+
 [tool.black]
 line-length = 120
 
