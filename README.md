@@ -2,7 +2,7 @@
 ![CI](https://github.com/VisiumCH/visium-lint/actions/workflows/ci.yml/badge.svg)
 [![PyPI version](https://badge.fury.io/py/visiumlint.svg)](https://badge.fury.io/py/visiumlint)
 
-All of your favorite linters and formatters gathered in a single command.
+All of your favorite linters and formatters gathered in a single command!
 
 Visiumlint relies on `black`, `isort`, `pylint`, `pydocstyle` and `mypy`.
 
