@@ -30,10 +30,15 @@ jobs:
       - name: Increment the git tag
         run: |
           # If update is considered as major, set this variable to true
-          export MAJOR_UPDATE=false
+          export MAJOR_UPDATE=true
           # get the current git tag
           git fetch --tags origin
           CURRENT_TAG=$(git describe --tags --abbrev=0)
+          if ["$MAJOR_UPDATE" = true]; then
+            echo "This is a test for a major update"
+          else
+            echo "This is a test for a minor update"
+          fi
           if ["$MAJOR_UPDATE" = true]; then
             # Increment the tag by a major version with the semver python package
             echo "Major update"
