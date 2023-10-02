@@ -6,19 +6,19 @@ from subprocess import run
 import typer
 
 
-def lint(fix: bool = typer.Option(False, "--fix", help="Enable fix mode.")) -> None:
+def lint(check_lint: bool = typer.Option(False, "--check", help="Enable check mode.")) -> None:
     """Implement the logic of the lint command."""
-    if fix:
-        check = ""
+    if check_lint:
+        check_lint = "--check"
     else:
-        check = "--check"
+        check_lint = ""
 
     run(["sh", "-c", "echo 'Running black'"], check=False)
-    black_returncode = run(["sh", "-c", f"black {check} . --line-length 120"], check=False).returncode
+    black_returncode = run(["sh", "-c", f"black {check_lint} . --line-length 120"], check=False).returncode
 
     run(["sh", "-c", "echo Running isort"], check=False)
     isort_returncode = run(
-        ["sh", "-c", f"isort {check} --gitignore . --line-length 120 --profile black"], check=False
+        ["sh", "-c", f"isort {check_lint} --gitignore . --line-length 120 --profile black"], check=False
     ).returncode
 
     run(["sh", "-c", "echo Running pylint"], check=False)
