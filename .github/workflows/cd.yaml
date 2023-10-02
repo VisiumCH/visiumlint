@@ -2,16 +2,18 @@
 name: CD Pipeline
 
 on:
+  push:
+    branches: [ feature/continuous-delivery ]
   workflow_dispatch:
-    # inputs:
-    #   major_update:
-    #     description: 'Major update'
-    #     required: true
-    #     default: false
-    #     type: choice
-    #     options:
-    #       - true
-    #       - false
+    inputs:
+      major_update:
+        description: 'Major update'
+        required: true
+        default: true
+        type: choice
+        options:
+          - true
+          - false
 
 jobs:
   publish-to-pypi:
@@ -40,10 +42,10 @@ jobs:
           CURRENT_TAG=$(git describe --tags --abbrev=0)
           if [ "${{inputs.major_update}}" == "true" ]; then
             # Increment the tag by a major version with the semver python package
-            echo "Major update"
+            echo "Major update!!!!"
           else
             # Increment the tag by a minor version with the semver python package
-            echo "Minor update"
+            echo "Minor update!!!!"
           fi
           # if [ "${{inputs.major_update}}" == "true" ]; then
           #   # Increment the tag by a major version with the semver python package
