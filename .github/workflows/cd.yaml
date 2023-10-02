@@ -42,37 +42,28 @@ jobs:
           CURRENT_TAG=$(git describe --tags --abbrev=0)
           if [ "${{inputs.major_update}}" == "true" ]; then
             # Increment the tag by a major version with the semver python package
-            echo "Major update!!!!"
+            echo "Major update"
+            NEW_TAG=$(python -c "import semver; print(semver.bump_major('$CURRENT_TAG'))")
           else
             # Increment the tag by a minor version with the semver python package
-            echo "Minor update!!!!"
+            echo "Minor update"
+            NEW_TAG=$(python -c "import semver; print(semver.bump_minor('$CURRENT_TAG'))")
           fi
-          # if [ "${{inputs.major_update}}" == "true" ]; then
-          #   # Increment the tag by a major version with the semver python package
-          #   echo "Major update"
-          #   NEW_TAG=$(python -c "import semver; print(semver.bump_major('$CURRENT_TAG'))")
-          # else
-          #   # Increment the tag by a minor version with the semver python package
-          #   echo "Minor update"
-          #   NEW_TAG=$(python -c "import semver; print(semver.bump_minor('$CURRENT_TAG'))")
-          # fi
-          # git tag $NEW_TAG
-          # # push the tag to the remote repository
-          # git push origin $NEW_TAG
-        # env:
-        #   MAJOR_UPDATE: "false"
+          git tag $NEW_TAG
+          # push the tag to the remote repository
+          git push origin $NEW_TAG
 
-      # - name: Retrieve the package version using setuptools_scm and publish to PyPI
-      #   run: |
-      #     # Use setuptools_scm to get the current version and echo it
-      #     PACKAGE_VERSION=$(python -c "import setuptools_scm; print(setuptools_scm.get_version())")
-      #     echo "Package version: $PACKAGE_VERSION"
+      - name: Retrieve the package version using setuptools_scm and publish to PyPI
+        run: |
+          # Use setuptools_scm to get the current version and echo it
+          PACKAGE_VERSION=$(python -c "import setuptools_scm; print(setuptools_scm.get_version())")
+          echo "Package version: $PACKAGE_VERSION"
 
-      #     # Build the package using setuptools_scm for versioning
-      #     python -m build
+          # Build the package using setuptools_scm for versioning
+          python -m build
 
-      #     # Publish the package to PyPI using twine
-      #     python -m twine upload dist/*
-      #   env:
-      #     TWINE_USERNAME: __token__
-      #     TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+          # Publish the package to PyPI using twine
+          python -m twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
