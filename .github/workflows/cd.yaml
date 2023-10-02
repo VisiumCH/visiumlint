@@ -20,13 +20,13 @@ jobs:
         with:
           python-version: 3.9
 
-      - run: |
-          python -m pip install --upgrade pip
-          python -m pip install --upgrade setuptools wheel
-          python -m pip install --upgrade twine
-          python -m pip install --upgrade setuptools_scm
-          python -m pip install --upgrade build
-          python -m pip install --upgrade semver
+      # - run: |
+      #     python -m pip install --upgrade pip
+      #     python -m pip install --upgrade setuptools wheel
+      #     python -m pip install --upgrade twine
+      #     python -m pip install --upgrade setuptools_scm
+      #     python -m pip install --upgrade build
+      #     python -m pip install --upgrade semver
 
       - name: Increment the git tag
         run: |
@@ -34,7 +34,7 @@ jobs:
           echo $MAJOR_UPDATE
           git fetch --tags origin
           CURRENT_TAG=$(git describe --tags --abbrev=0)
-          if ["$MAJOR_UPDATE" = "false"]; then
+          if ["$MAJOR_UPDATE" = false]; then
             echo "This is a test for a major update"
           else
             echo "This is a test for a minor update"
