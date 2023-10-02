@@ -1,8 +1,17 @@
-
+[project]
+name = "visiumlint"
+dynamic = ["version"]
+description = "All of your favorite linters and formatters gathered in a single command."
+dependencies = ["black", "isort", "mypy", "pydocstyle", "pylint", "typer"]
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
+
+[project.scripts]
+visiumlint = "visiumlint.main:main"
+
+[tool.setuptools_scm]
 
 [tool.black]
 line-length = 120
