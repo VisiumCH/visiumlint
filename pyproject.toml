@@ -3,6 +3,10 @@ name = "visiumlint"
 dynamic = ["version"]
 description = "All of your favorite linters and formatters gathered in a single command."
 
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
 [project.scripts]
 explore = "visiumlint.main:main"
 
