@@ -34,14 +34,15 @@ jobs:
           # get the current git tag
           git fetch --tags origin
           CURRENT_TAG=$(git describe --tags --abbrev=0)
-          if [[ "$MAJOR_UPDATE" = true]]; then
+          if ["$MAJOR_UPDATE" = true]; then
             # Increment the tag by a major version with the semver python package
+            echo "Major update"
             NEW_TAG=$(python -c "import semver; print(semver.bump_major('$CURRENT_TAG'))")
           else
             # Increment the tag by a minor version with the semver python package
+            echo "Minor update"
             NEW_TAG=$(python -c "import semver; print(semver.bump_minor('$CURRENT_TAG'))")
           fi
-
           git tag $NEW_TAG
           # push the tag to the remote repository
           git push origin $NEW_TAG
