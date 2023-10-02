@@ -9,7 +9,7 @@ on:
       major_update:
         description: 'Major update'
         required: true
-        default: true
+        default: false
         type: choice
         options:
           - true
