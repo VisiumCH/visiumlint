@@ -3,12 +3,12 @@ name: CD Pipeline
 
 on:
   push:
-    branches: [ feature/continuous-delivery ]
+    branches: [ main ]
   workflow_dispatch:
     inputs:
       major_update:
-        description: 'Major update'
-        required: true
+        description: 'Set it to true to bump a major version'
+        required: false
         default: false
         type: choice
         options:
@@ -42,11 +42,9 @@ jobs:
           CURRENT_TAG=$(git describe --tags --abbrev=0)
           if [ "${{inputs.major_update}}" == "true" ]; then
             # Increment the tag by a major version with the semver python package
-            echo "Major update"
             NEW_TAG=$(python -c "import semver; print(semver.bump_major('$CURRENT_TAG'))")
           else
             # Increment the tag by a minor version with the semver python package
-            echo "Minor update"
             NEW_TAG=$(python -c "import semver; print(semver.bump_minor('$CURRENT_TAG'))")
           fi
           git tag $NEW_TAG
