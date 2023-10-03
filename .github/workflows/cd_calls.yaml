@@ -1,0 +1,25 @@
+name: Deploy to PyPI
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      major_update:
+        description: 'Set it to true to bump a major version'
+        required: false
+        default: false
+        type: choice
+        options: [true, false]
+
+jobs:
+  major-update:
+    if: ${{ github.event.inputs.major_update == 'true' }}
+    uses: VisiumCH/deploy-to-pypi/.github/workflows/cd.yaml@master
+    with:
+      major_update: true
+  minor-update:
+    if: ${{ github.event.inputs.major_update != 'true' }}
+    uses: VisiumCH/deploy-to-pypi/.github/workflows/cd.yaml@master
+    with:
+      major_update: false
