@@ -2,7 +2,7 @@ name: Deploy Minor Bump to PyPI
 
 on:
   push:
-    branches: [ feature/callable-workflow ]
+    branches: [ main ]
 
 jobs:
   minor-bump-project-deployment:
