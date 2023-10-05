@@ -6,4 +6,4 @@ on:
 
 jobs:
   minor-bump-project-deployment:
-    uses: epplepascal/deploy-to-pypi/.github/workflows/cd.yaml@main
+    uses: VisiumCH/deploy-to-pypi/.github/workflows/cd.yaml@master
