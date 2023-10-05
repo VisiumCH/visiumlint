@@ -7,3 +7,4 @@ on:
 jobs:
   minor-bump-project-deployment:
     uses: VisiumCH/deploy-to-pypi/.github/workflows/cd.yaml@main
+    secrets: inherit
