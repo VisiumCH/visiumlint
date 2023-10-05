@@ -1,25 +1,9 @@
-name: Deploy to PyPI!
+name: Deploy Minor Bump to PyPI
 
 on:
   push:
-    branches: [feature/callable-workflow]
-  workflow_dispatch:
-    inputs:
-      major_update:
-        description: 'Set it to true to bump a major version'
-        required: false
-        default: false
-        type: choice
-        options: [true, false]
+    branches: [ feature/continuous-deployment ]
 
 jobs:
-  major-update:
-    if: ${{ github.event.inputs.major_update == 'true' }}
-    uses: VisiumCH/deploy-to-pypi/.github/workflows/cd.yaml@master
-    with:
-      major_update: true
-  minor-update:
-    if: ${{ github.event.inputs.major_update != 'true' }}
-    uses: VisiumCH/deploy-to-pypi/.github/workflows/cd.yaml@master
-    with:
-      major_update: false
+  minor-bump-project-deployment:
+    uses: epplepascal/deploy-to-pypi/.github/workflows/cd.yaml@main
