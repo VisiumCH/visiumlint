@@ -6,7 +6,7 @@ from subprocess import run
 import typer
 
 
-def lint(check_lint: bool = typer.Option(False, "--check", help="Enable check mode.")) -> None:
+def lint(check_lint: bool = typer.Option(False, "--check", help="Enable check mode."), hook : bool = typer.Option(False, "--hook", help="Enable hook mode.")) -> None:
     """Implement the logic of the lint command."""
     if check_lint:
         check_lint = "--check"
@@ -21,21 +21,24 @@ def lint(check_lint: bool = typer.Option(False, "--check", help="Enable check mo
         ["sh", "-c", f"isort {check_lint} --gitignore . --line-length 120 --profile black"], check=False
     ).returncode
 
-    run(["sh", "-c", "echo Running pylint"], check=False)
-    pylint_returncode = run(
-        [
-            "sh",
-            "-c",
-            "pylint . --recursive=y --load-plugins=pylint.extensions.docstyle,pylint.extensions.docparams --disable=fixme,too-few-public-methods",
-            "--variable-rgx",
-            "^[a-z][a-z0-9_]*$",
-            "--argument-rgx",
-            "^[a-z][a-z0-9_]*$",
-            "--max-line-length",
-            "120",
-        ],
-        check=False,
-    ).returncode
+    if not hook:
+        run(["sh", "-c", "echo Running pylint"], check=False)
+        pylint_returncode = run(
+            [
+                "sh",
+                "-c",
+                "pylint . --recursive=y --load-plugins=pylint.extensions.docstyle,pylint.extensions.docparams --disable=fixme,too-few-public-methods",
+                "--variable-rgx",
+                "^[a-z][a-z0-9_]*$",
+                "--argument-rgx",
+                "^[a-z][a-z0-9_]*$",
+                "--max-line-length",
+                "120",
+            ],
+            check=False,
+        ).returncode
+    else:
+        pylint_returncode = 0
 
     run(["sh", "-c", "echo Running pydocstyle"], check=False)
     pydocstyle_returncode = run(
