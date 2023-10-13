@@ -6,7 +6,10 @@ from subprocess import run
 import typer
 
 
-def lint(check_lint: bool = typer.Option(False, "--check", help="Enable check mode."), hook : bool = typer.Option(False, "--hook", help="Enable hook mode.")) -> None:
+def lint(
+    check_lint: bool = typer.Option(False, "--check", help="Enable check mode."),
+    hook: bool = typer.Option(False, "--hook", help="Enable hook mode."),
+) -> None:
     """Implement the logic of the lint command."""
     if check_lint:
         check_lint = "--check"
