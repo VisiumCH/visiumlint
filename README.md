@@ -16,7 +16,24 @@ Visiumlint relies on `black`, `isort`, `pylint`, `pydocstyle` and `mypy`.
 - Activate the environment using `pipenv shell`
 - Run the visium package by running the command `visiumlint`
 
+# Hook
 
+You can automate visiumlint when commiting changes with a [git hook](https://githooks.com/) and the [pre-commit](https://pre-commit.com/) library. The hook will not execute `Pylint`.
+
+- Make sure to have installed pre-commit, or else run `pip install pre-commit`
+
+- Add a file called `.pre-commit-config.yaml` to the root of your project:
+```yaml
+repos:
+-     repo: https://github.com/VisiumCH/visiumlint
+      rev: 1.6.0
+      hooks:
+      -     id: visiumlint
+            language: python
+            types: [python]
+            require_serial: true
+```
+- Run `pre-commit autoupdate`. This will use the latest available version of visiumlint.
 # Development
 ## Manage your python environment
 
