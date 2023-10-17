@@ -3,4 +3,4 @@
   description: Run visiumlint without Pylint
   entry: visiumlint --hook
   language: python
-  pass_filenames: false
+  pass_filenames: true
