@@ -37,7 +37,13 @@ def lint(
             [
                 "sh",
                 "-c",
-                f"pylint {paths} --max-line-length 120 --argument-rgx=^[a-z][a-z0-9_]*$ --variable-rgx=^[a-z][a-z0-9_]*$ --recursive=y --load-plugins=pylint.extensions.docstyle,pylint.extensions.docparams --disable=fixme,too-few-public-methods",
+                f"pylint {paths} "
+                "--max-line-length 120 "
+                "--argument-rgx=^[a-z][a-z0-9_]*$ "
+                "--variable-rgx=^[a-z][a-z0-9_]*$ "
+                "--recursive=y "
+                "--load-plugins=pylint.extensions.docstyle,pylint.extensions.docparams "
+                "--disable=fixme,too-few-public-methods",
             ],
             check=False,
         ).returncode
