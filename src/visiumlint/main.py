@@ -37,13 +37,13 @@ def lint(
             [
                 "sh",
                 "-c",
-                f"pylint {paths} --recursive=y --load-plugins=pylint.extensions.docstyle,pylint.extensions.docparams --disable=fixme,too-few-public-methods",
-                "--variable-rgx",
-                "^[a-z][a-z0-9_]*$",
-                "--argument-rgx",
-                "^[a-z][a-z0-9_]*$",
-                "--max-line-length",
-                "120",
+                f"pylint {paths} "
+                "--max-line-length 120 "
+                "--argument-rgx=^[a-z][a-z0-9_]*$ "
+                "--variable-rgx=^[a-z][a-z0-9_]*$ "
+                "--recursive=y "
+                "--load-plugins=pylint.extensions.docstyle,pylint.extensions.docparams "
+                "--disable=fixme,too-few-public-methods",
             ],
             check=False,
         ).returncode
@@ -52,7 +52,7 @@ def lint(
 
     run(["sh", "-c", "echo Running pydocstyle"], check=False)
     pydocstyle_returncode = run(
-        ["sh", "-c", f"pydocstyle {paths}", "--add-ignore", "D107, D104, D103", "--convention", "google"],
+        ["sh", "-c", f"pydocstyle {paths} --add-ignore=D107,D104,D103 --convention=google"],
         check=False,
     ).returncode
 
@@ -79,3 +79,7 @@ def lint(
 def main() -> None:
     """Typer entrypoint."""
     typer.run(lint)
+
+
+if __name__ == "__main__":
+    main()
