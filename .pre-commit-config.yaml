@@ -5,12 +5,12 @@ repos:
   hooks:
     - id: black
       name: check that the code is formatted with black
-      entry: pipenv run black --check
+      entry: uv run black --check
       language: system
       types: [python]
 
     - id: isort
       name: check that the imports are sorted
-      entry: pipenv run isort --check
+      entry: uv run isort --check
       language: system
       types: [python]
