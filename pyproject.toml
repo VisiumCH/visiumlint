@@ -2,14 +2,35 @@
 name = "visiumlint"
 dynamic = ["version"]
 description = "All of your favorite linters and formatters gathered in a single command."
-dependencies = ["black", "isort", "mypy", "pydocstyle", "pylint", "typer"]
+requires-python = ">=3.10"
+dependencies = [
+    "black",
+    "isort",
+    "mypy",
+    "pydocstyle",
+    "pylint",
+    "typer",
+]
+
+[project.scripts]
+visiumlint = "visiumlint.main:main"
+
+[dependency-groups]
+dev = []
 
 [build-system]
 requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
-[project.scripts]
-visiumlint = "visiumlint.main:main"
+[tool.uv]
+package = true
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+
+[tool.uv.sources]
+visiumlint = { path = "." }
 
 [tool.setuptools_scm]
 
@@ -22,6 +43,7 @@ line_length = 120
 
 [tool.pylint.master]
 load-plugins = "pylint.extensions.docparams, pylint.extensions.docstyle"
+ignore-paths= '.venv'
 
 [tool.pylint.messages_control]
 disable = """

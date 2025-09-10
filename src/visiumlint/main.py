@@ -8,6 +8,7 @@ from typing import List
 import typer
 
 
+
 def lint(
     paths: List[Path] = typer.Argument(default=None, help="Paths of files and directories to visiumlint."),
     check_lint: bool = typer.Option(False, "--check", help="Enable check mode."),
