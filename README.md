@@ -8,19 +8,19 @@ Visiumlint relies on `black`, `isort`, `pylint`, `pydocstyle` and `mypy`.
 
 # Installation
 
-`pipenv install visiumlint`
+`uv add visiumlint`
 
 # Example usage
-- Create a pipenv environment
+- Create a uv virtual environment
 - Install visiumlint using the above command.
-- Activate the environment using `pipenv shell`
+- Activate the environment using `source .venv/bin/activate`
 - Run the visium package by running the command `visiumlint`
 
 # Hook
 
 You can automate visiumlint when commiting changes with a [git hook](https://githooks.com/) and the [pre-commit](https://pre-commit.com/) library. The hook will not execute `Pylint`.
 
-- Make sure to have installed pre-commit, or else run `pip install pre-commit`
+- Make sure to have installed pre-commit, or else run `uv add pre-commit`
 
 - Add a file called `.pre-commit-config.yaml` to the root of your project:
 ```yaml
@@ -38,10 +38,9 @@ repos:
 ## Manage your python environment
 
 ### Set up the environment
-The python environment is managed with `pipenv`. You can set up your environment with the following steps:
+The python environment is managed with `uv`. You can set up your environment with the following steps:
 
-- Run `pipenv lock` to generate the `Pipfile.lock` which lists the version of your python packages.
-- Run `pipenv install --dev` to actually create a virtual environment and install the python packages. The flag `--dev` allows to install the development packages (for linting, ...).
+- Run `uv sync --dev` to create the environment and install the python packages with the `uv.lock` which lists the version of your python packages.The flag `--dev` allows to install the development packages (for linting, ...).
 
 
 
@@ -49,19 +48,19 @@ The python environment is managed with `pipenv`. You can set up your environment
 
 To run code under your newly set up environment, you have two options:
 
-- *Open a shell*: activate your environment with `pipenv shell`. Note that this command will also source environment variables from your `.env` file.
+- *Open a shell*: activate your environment with `source .venv/bin/activate`. 
 
-- *Pipenv CLI*: you can also run scripts using your python environment with `pipenv run script.py`. This can be convenient within a `docker build` execution for example.
+- *Pipenv CLI*: you can also run scripts using your python environment with `uv run script.py`. This can be convenient within a `docker build` execution for example.
 
 
-### Some tips about pipenv
+### Some tips about uv
 
 **About deploying in production**
 
-Note that when deploying your code in production, you should not install the dev package, it is preferred to run the following command: `pipenv install --system --deploy`.
+Note that when deploying your code in production, you should not install the dev package, it is preferred to run the following command: `uv sync --locked --no-dev`. In production, to target the system environment, set `UV_PROJECT_ENVIRONMENT` to the prefix of the Python installation, ie. `"/usr/local"`.
 
-**About using git with pipenv**
+**About using git with uv**
 
-Make sure to commit the `Pipfile.lock` in `git`. It will make your code more reproducible because other developers could install the exact same python packages as you used.
+Make sure to commit the `uv.lock` in `git`. It will make your code more reproducible because other developers could install the exact same python packages as you used.
 
 ---
