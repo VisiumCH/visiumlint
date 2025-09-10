@@ -14,10 +14,3 @@ repos:
       entry: uv run isort --check
       language: system
       types: [python]
-    
-    - id: visiumlint
-      name: check that visiumlint is packaged correctly
-      entry: uv run visiumlint
-      language: system
-      types: [python]
-    
