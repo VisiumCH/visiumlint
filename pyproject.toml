@@ -43,6 +43,7 @@ line_length = 120
 
 [tool.pylint.master]
 load-plugins = "pylint.extensions.docparams, pylint.extensions.docstyle"
+ignore-paths= '.venv'
 
 [tool.pylint.messages_control]
 disable = """

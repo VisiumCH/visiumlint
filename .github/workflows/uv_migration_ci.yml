@@ -1,4 +1,4 @@
-name: Migration to uv workflow
+name: CI - Migration to uv workflow
 
 on:
   push:
