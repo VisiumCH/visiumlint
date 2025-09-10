@@ -348,7 +348,7 @@ wheels = [
 
 [[package]]
 name = "visiumlint"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "black" },
     { name = "isort" },
